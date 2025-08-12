@@ -3,26 +3,51 @@
 \usepackage[T1]{fontenc}
 \usepackage{tikz,amsmath}
 
+% Define bright colors.
+\definecolor{TolBrightBlue}{HTML}{4477AA}
+\definecolor{TolBrightCyan}{HTML}{66CCEE}
+\definecolor{TolBrightGreen}{HTML}{228833}
+\definecolor{TolBrightYellow}{HTML}{CCBB44}
+\definecolor{TolBrightRed}{HTML}{EE6677}
+\definecolor{TolBrightPurple}{HTML}{AA3377}
+\definecolor{TolBrightGray}{HTML}{BBBBBB}
+
+\definecolor{TolMutedBlue}{HTML}{332288}
+\definecolor{TolMutedCyan}{HTML}{88CCEE}
+\definecolor{TolMutedTeal}{HTML}{44AA99}
+\definecolor{TolMutedGreen}{HTML}{117733}
+\definecolor{TolMutedOlive}{HTML}{999933}
+\definecolor{TolMutedSand}{HTML}{DDCC77}
+\definecolor{TolMutedRose}{HTML}{CC6677}
+\definecolor{TolMutedWine}{HTML}{882255}
+\definecolor{TolMutedPurple}{HTML}{AA4499}
+
 \tikzset{
     key/.style={rectangle, draw, minimum width = 1.75cm,
                 minimum height = 1.75cm, inner sep = 0},
+    knob/.style={circle, draw, minimum width = 1.75cm,
+                minimum height = 1.75cm, inner sep = 0},
     mainlayer/.style={inner sep = 0},
-    normalstyle/.style={anchor=north, font=\normalsize\bfseries, yshift=-.025cm},
-    shiftstyle/.style={anchor=south, font=\small, yshift=.025cm},
+    normalstyle/.style={anchor=north, font=\normalsize\bfseries, yshift=-.05cm},
+    centerstyle/.style={anchor=center, font=\normalsize\bfseries},
+    shiftstyle/.style={anchor=south, font=\small, yshift=.05cm, text=TolMutedBlue},
 }
 % 1 parent node, 2 normal, 3 shift
 \newcommand{\main}[3]{%
     \node[mainlayer,normalstyle] (#1.Mn) at (#1.center) {#2};
     \node[mainlayer,shiftstyle] (#1.Ms) at (#1.center) {#3};
 }
+\newcommand{\singleMain}[2]{%
+    \node[mainlayer,centerstyle] (#1.Mc) at (#1.center) {#2};
+}
 \begin{document}
     \begin{tikzpicture}[scale=2]
         \node[key] (K0c1) at (9,1.5) {};
-        \main{K0c1}{Any}{}
+        \singleMain{K0c1}{Any}
         \node[key] (K0c2) at (10,1.5) {};
-        \main{K0c2}{Fun}{}
-        \node[key] (K0c3) at (11,1.5) {};
-        \main{K0c3}{knob}{}
+        \singleMain{K0c2}{Fun}<
+        \node[knob] (K0c3) at (11,1.5) {};
+        \singleMain{K0c3}{knob}
         %
         \node[key] (K1c1) at (0,0) {};
         \main{K1c1}{<}{>}
@@ -48,6 +73,33 @@
         \main{K1c11}{0}{=}
         \node[key] (K1c12) at (11,0) {};
         \main{K1c12}{+}{?}
-
+        %
+        %
+        % Second line
+        \node[key] (K2c1) at (0,-1) {};
+        \singleMain{K2c1}{Tab}
+        %
+        %
+        % Third line
+        \node[key] (K3c1) at (0,-2) {};
+        \singleMain{K3c1}{Esc}
+        %
+        %
+        % Fourth line
+        \node[key] (K4c1) at (0,-3) {};
+        \singleMain{K4c1}{Shift}
+        %
+        %
+        % Third line
+        \node[key] (K5c1) at (0,-4) {};
+        \singleMain{K5c1}{Hyper}
+        \node[key] (K5c2) at (1,-4) {};
+        \singleMain{K5c2}{Ctrl}
+        \node[key] (K5c3) at (2,-4) {};
+        \singleMain{K5c3}{Alt}
+        \node[key] (K5c4) at (3,-4) {};
+        \singleMain{K5c4}{Cmd}
+        \node[key] (K5c5) at (4,-4) {};
+        \singleMain{K5c5}{Lower}
     \end{tikzpicture}
 \end{document}
