@@ -1,0 +1,53 @@
+\documentclass[a4paper, landscape, DIV=14]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tikz,amsmath}
+
+\tikzset{
+    key/.style={rectangle, draw, minimum width = 1.75cm,
+                minimum height = 1.75cm, inner sep = 0},
+    mainlayer/.style={inner sep = 0},
+    normalstyle/.style={anchor=north, font=\normalsize\bfseries, yshift=-.025cm},
+    shiftstyle/.style={anchor=south, font=\small, yshift=.025cm},
+}
+% 1 parent node, 2 normal, 3 shift
+\newcommand{\main}[3]{%
+    \node[mainlayer,normalstyle] (#1.Mn) at (#1.center) {#2};
+    \node[mainlayer,shiftstyle] (#1.Ms) at (#1.center) {#3};
+}
+\begin{document}
+    \begin{tikzpicture}[scale=2]
+        \node[key] (K0c1) at (9,1.5) {};
+        \main{K0c1}{Any}{}
+        \node[key] (K0c2) at (10,1.5) {};
+        \main{K0c2}{Fun}{}
+        \node[key] (K0c3) at (11,1.5) {};
+        \main{K0c3}{knob}{}
+        %
+        \node[key] (K1c1) at (0,0) {};
+        \main{K1c1}{<}{>}
+        \node[key] (K1c2) at (1,0) {};
+        \main{K1c2}{1}{!}
+        \node[key] (K1c3) at (2,0) {};
+        \main{K1c3}{2}{"}
+        \node[key] (K1c4) at (3,0) {};
+        \main{K1c4}{3}{\#}
+        \node[key] (K1c5) at (4,0) {};
+        \main{K1c5}{4}{\#}
+        \node[key] (K1c6) at (5,0) {};
+        \main{K1c6}{5}{\%}
+        \node[key] (K1c7) at (6,0) {};
+        \main{K1c7}{6}{\&}
+        \node[key] (K1c8) at (7,0) {};
+        \main{K1c8}{7}{/}
+        \node[key] (K1c9) at (8,0) {};
+        \main{K1c9}{8}{(}
+        \node[key] (K1c10) at (9,0) {};
+        \main{K1c10}{9}{)}
+        \node[key] (K1c11) at (10,0) {};
+        \main{K1c11}{0}{=}
+        \node[key] (K1c12) at (11,0) {};
+        \main{K1c12}{+}{?}
+
+    \end{tikzpicture}
+\end{document}
