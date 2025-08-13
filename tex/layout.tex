@@ -27,156 +27,191 @@
                 minimum height = 1.75cm, inner sep = 0},
     knob/.style={circle, draw, minimum width = 1.75cm,
                 minimum height = 1.75cm, inner sep = 0},
-    mainlayer/.style={inner sep = 0},
-    normalstyle/.style={anchor=north, font=\normalsize\bfseries, yshift=-.05cm},
+    normalstyle/.style={anchor=center, font=\normalsize\bfseries, yshift=-.2cm},
     centerstyle/.style={anchor=center, font=\normalsize\bfseries},
-    shiftstyle/.style={anchor=south, font=\small, yshift=.05cm, text=TolMutedBlue},
+    shiftstyle/.style={anchor=center, font=\small, yshift=.2cm},
+    %
+    lowernormalstyle/.style={anchor=south east, font=\normalsize\bfseries, yshift=-.05cm},
+    lowercenterstyle/.style={anchor=south east, font=\normalsize\bfseries},
+    lowershiftstyle/.style={anchor=south east, font=\small, yshift=.35cm},
+    %
+    raisenormalstyle/.style={anchor=north east, font=\normalsize\bfseries, yshift=-.05cm},
+    raisecenterstyle/.style={anchor=north east, font=\normalsize\bfseries},
+    raiseshiftstyle/.style={anchor=north east, font=\small, yshift=.35cm},
 }
 % 1 parent node, 2 normal, 3 shift
-\newcommand{\main}[3]{%
-    \node[mainlayer,normalstyle] (#1.Mn) at (#1.center) {#2};
-    \node[mainlayer,shiftstyle] (#1.Ms) at (#1.center) {#3};
+\newcommand{\mainLayer}[3]{%
+    \node[normalstyle] (#1.Mn) at (#1.center) {#2};
+    \node[shiftstyle, text=TolMutedBlue] (#1.Ms) at (#1.center) {#3};
 }
-\newcommand{\singleMain}[2]{%
-    \node[mainlayer,centerstyle] (#1.Mc) at (#1.center) {#2};
+\newcommand{\mainLayerC}[2]{%
+    \node[centerstyle] (#1.Mc) at (#1.center) {#2};
+}
+\newcommand{\lowerLayer}[3]{%
+    \node[lowernormalstyle, text=TolMutedGreen] (#1.Mn) at (#1.south east) {#2};
+    \node[lowershiftstyle,  text=TolBrightGreen] (#1.Ms) at (#1.south east) {#3};
+}
+\newcommand{\lowerLayerC}[2]{%
+    \node[lowercenterstyle,  text=TolMutedGreen] (#1.Mc) at (#1.south east) {#2};
+}
+\newcommand{\raiseLayer}[3]{%
+    \node[raisenormalstyle, text=TolMutedPurple] (#1.Mn) at (#1.north east) {#2};
+    \node[raiseshiftstyle,  text=TolBrightPurple] (#1.Ms) at (#1.north east) {#3};
+}
+\newcommand{\raiseLayerC}[2]{%
+    \node[raisecenterstyle, text=TolMutedPurple] (#1.Mc) at (#1.north east) {#2};
 }
 \begin{document}
     \begin{tikzpicture}[scale=2]
         \node[key] (K0c1) at (9,1.5) {};
-        \singleMain{K0c1}{Any}
+        \mainLayerC{K0c1}{Any}
         \node[key] (K0c2) at (10,1.5) {};
-        \singleMain{K0c2}{Fun}<
+        \mainLayerC{K0c2}{Fun}<
         \node[knob] (K0c3) at (11,1.5) {};
-        \singleMain{K0c3}{knob}
+        \mainLayerC{K0c3}{knob}
         %
         \node[key] (K1c1) at (0,0) {};
-        \main{K1c1}{<}{>}
+        \mainLayer{K1c1}{<}{>}
         \node[key] (K1c2) at (1,0) {};
-        \main{K1c2}{1}{!}
+        \mainLayer{K1c2}{1}{!}
         \node[key] (K1c3) at (2,0) {};
-        \main{K1c3}{2}{"}
+        \mainLayer{K1c3}{2}{"}
         \node[key] (K1c4) at (3,0) {};
-        \main{K1c4}{3}{\#}
+        \mainLayer{K1c4}{3}{\#}
         \node[key] (K1c5) at (4,0) {};
-        \main{K1c5}{4}{\#}
+        \mainLayer{K1c5}{4}{\#}
         \node[key] (K1c6) at (5,0) {};
-        \main{K1c6}{5}{\%}
+        \mainLayer{K1c6}{5}{\%}
         \node[key] (K1c7) at (6,0) {};
-        \main{K1c7}{6}{\&}
+        \mainLayer{K1c7}{6}{\&}
         \node[key] (K1c8) at (7,0) {};
-        \main{K1c8}{7}{/}
+        \mainLayer{K1c8}{7}{/}
         \node[key] (K1c9) at (8,0) {};
-        \main{K1c9}{8}{(}
+        \mainLayer{K1c9}{8}{(}
         \node[key] (K1c10) at (9,0) {};
-        \main{K1c10}{9}{)}
+        \mainLayer{K1c10}{9}{)}
         \node[key] (K1c11) at (10,0) {};
-        \main{K1c11}{0}{=}
+        \mainLayer{K1c11}{0}{=}
         \node[key] (K1c12) at (11,0) {};
-        \main{K1c12}{+}{?}
+        \mainLayer{K1c12}{+}{?}
         %
         %
         % Second line
         \node[key] (K2c1) at (0,-1) {};
-        \singleMain{K2c1}{Tab}
+        \mainLayerC{K2c1}{Tab}
         \node[key] (K2c2) at (1,-1) {};
-        \main{K2c2}{q}{Q}
+        \mainLayer{K2c2}{q}{Q}
         \node[key] (K2c3) at (2,-1) {};
-        \main{K2c3}{w}{W}
+        \mainLayer{K2c3}{w}{W}
         \node[key] (K2c4) at (3,-1) {};
-        \main{K2c4}{e}{E}
+        \mainLayer{K2c4}{e}{E}
         \node[key] (K2c5) at (4,-1) {};
-        \main{K2c5}{r}{R}
+        \mainLayer{K2c5}{r}{R}
         \node[key] (K2c6) at (5,-1) {};
-        \main{K2c6}{t}{T}
+        \mainLayer{K2c6}{t}{T}
         \node[key] (K2c7) at (6,-1) {};
-        \main{K2c7}{y}{Y}
+        \mainLayer{K2c7}{y}{Y}
+        \raiseLayerC{K2c7}{@}
         \node[key] (K2c8) at (7,-1) {};
-        \main{K2c8}{u}{U}
+        \mainLayer{K2c8}{u}{U}
+        \lowerLayerC{K2c8}{7}
+        \raiseLayerC{K2c8}{Å}
         \node[key] (K2c9) at (8,-1) {};
-        \main{K2c9}{i}{I}
+        \mainLayer{K2c9}{i}{I}
+        \lowerLayerC{K2c9}{8}
+        \raiseLayerC{K2c9}{$\hat{}$}
         \node[key] (K2c10) at (9,-1) {};
-        \main{K2c10}{o}{O}
+        \mainLayer{K2c10}{o}{O}
+        \lowerLayerC{K2c10}{9}
+        \raiseLayerC{K2c10}{å}
         \node[key] (K2c11) at (10,-1) {};
-        \main{K2c11}{p}{P}
+        \mainLayer{K2c11}{p}{P}
         \node[key] (K2c12) at (11,-1) {};
-        \singleMain{K2c12}{Bksp}
+        \mainLayerC{K2c12}{Bksp}
         %
         %
         % Third line
         \node[key] (K3c1) at (0,-2) {};
-        \singleMain{K3c1}{Esc}
+        \mainLayerC{K3c1}{Esc}
         \node[key] (K3c2) at (1,-2) {};
-        \main{K3c2}{a}{A}
+        \mainLayer{K3c2}{a}{A}
         \node[key] (K3c3) at (2,-2) {};
-        \main{K3c3}{s}{S}
+        \mainLayer{K3c3}{s}{S}
         \node[key] (K3c4) at (3,-2) {};
-        \main{K3c4}{d}{D}
+        \mainLayer{K3c4}{d}{D}
         \node[key] (K3c5) at (4,-2) {};
-        \main{K3c5}{f}{F}
+        \mainLayer{K3c5}{f}{F}
         \node[key] (K3c6) at (5,-2) {};
-        \main{K3c6}{g}{G}
+        \mainLayer{K3c6}{g}{G}
         \node[key] (K3c7) at (6,-2) {};
-        \main{K3c7}{h}{H}
+        \mainLayer{K3c7}{h}{H}
         \node[key] (K3c8) at (7,-2) {};
-        \main{K3c8}{j}{J}
+        \mainLayer{K3c8}{j}{J}
+        \lowerLayerC{K3c8}{4}
         \node[key] (K3c9) at (8,-2) {};
-        \main{K3c9}{k}{K}
+        \mainLayer{K3c9}{k}{K}
+        \lowerLayerC{K3c9}{5}
         \node[key] (K3c10) at (9,-2) {};
-        \main{K3c10}{l}{L}
+        \mainLayer{K3c10}{l}{L}
+        \lowerLayerC{K3c10}{6}
         \node[key] (K3c11) at (10,-2) {};
-        \main{K3c11}{ø}{Ø}
+        \mainLayer{K3c11}{ø}{Ø}
         \node[key] (K3c12) at (11,-2) {};
-        \main{K3c12}{æ}{Æ}
+        \mainLayer{K3c12}{æ}{Æ}
         %
         %
         % Fourth line
         \node[key] (K4c1) at (0,-3) {};
-        \singleMain{K4c1}{Shift}
+        \mainLayerC{K4c1}{Shift}
         \node[key] (K4c2) at (1,-3) {};
-        \main{K4c2}{z}{Z}
+        \mainLayer{K4c2}{z}{Z}
         \node[key] (K4c3) at (2,-3) {};
-        \main{K4c3}{x}{X}
+        \mainLayer{K4c3}{x}{X}
         \node[key] (K4c4) at (3,-3) {};
-        \main{K4c4}{c}{C}
+        \mainLayer{K4c4}{c}{C}
         \node[key] (K4c5) at (4,-3) {};
-        \main{K4c5}{v}{V}
+        \mainLayer{K4c5}{v}{V}
         \node[key] (K4c6) at (5,-3) {};
-        \main{K4c6}{b}{B}
+        \mainLayer{K4c6}{b}{B}
         \node[key] (K4c7) at (6,-3) {};
-        \main{K4c7}{n}{N}
+        \mainLayer{K4c7}{n}{N}
         \node[key] (K4c8) at (7,-3) {};
-        \main{K4c8}{m}{M}
+        \mainLayer{K4c8}{m}{M}
+        \lowerLayerC{K4c8}{1}
         \node[key] (K4c9) at (8,-3) {};
-        \main{K4c9}{,}{;}
+        \mainLayer{K4c9}{,}{;}
+        \lowerLayerC{K4c9}{2}
         \node[key] (K4c10) at (9,-3) {};
-        \main{K4c10}{.}{:}
+        \mainLayer{K4c10}{.}{:}
+        \lowerLayerC{K4c10}{3}
         \node[key] (K4c11) at (10,-3) {};
-        \main{K4c11}{-}{\_}
+        \mainLayer{K4c11}{-}{\_}
         \node[key] (K4c12) at (11,-3) {};
-        \singleMain{K4c12}{Enter}
+        \mainLayerC{K4c12}{Enter}
         %
         %
         % Fifth line
         \node[key] (K5c1) at (0,-4) {};
-        \singleMain{K5c1}{Hyper}
+        \mainLayerC{K5c1}{Hyper}
         \node[key] (K5c2) at (1,-4) {};
-        \singleMain{K5c2}{Ctrl}
+        \mainLayerC{K5c2}{Ctrl}
         \node[key] (K5c3) at (2,-4) {};
-        \singleMain{K5c3}{Alt}
+        \mainLayerC{K5c3}{Alt}
         \node[key] (K5c4) at (3,-4) {};
-        \singleMain{K5c4}{Cmd}
+        \mainLayerC{K5c4}{Cmd}
         \node[key] (K5c5) at (4,-4) {};
-        \singleMain{K5c5}{\color{TolMutedGreen} Lower}
+        \mainLayerC{K5c5}{\color{TolMutedGreen} Lower}
         \node[key, minimum width = 3.75cm] (K5c6) at (5.5,-4) {};
         \node[key] (K5c7) at (7,-4) {};
-        \singleMain{K5c7}{\color{TolMutedWine} Raise}
+        \mainLayerC{K5c7}{\color{TolMutedWine} Raise}
         \node[key] (K5c8) at (8,-4) {};
-        \singleMain{K5c8}{$\leftarrow$}
+        \mainLayerC{K5c8}{$\leftarrow$}
+        \lowerLayer{K5c8}{.}{:}
         \node[key] (K5c9) at (9,-4) {};
-        \singleMain{K5c9}{$\downarrow$}
+        \mainLayerC{K5c9}{$\downarrow$}
         \node[key] (K5c10) at (10,-4) {};
-        \singleMain{K5c10}{$\uparrow$}
+        \mainLayerC{K5c10}{$\uparrow$}
         \node[key] (K5c11) at (11,-4) {};
-        \singleMain{K5c11}{$\rightarrow$}
+        \mainLayerC{K5c11}{$\rightarrow$}
     \end{tikzpicture}
 \end{document}
