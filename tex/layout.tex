@@ -128,11 +128,13 @@
         \mainLayer{K2c11}{p}{P}
         \node[key] (K2c12) at (11,-1) {};
         \mainLayerC{K2c12}{Bksp}
+        \raiseLayerC{K2c12}{Del}
         %
         %
         % Third line
         \node[key] (K3c1) at (0,-2) {};
         \mainLayerC{K3c1}{Esc}
+        \raiseLayerC{K3c1}{Caps}
         \node[key] (K3c2) at (1,-2) {};
         \mainLayer{K3c2}{a}{A}
         \node[key] (K3c3) at (2,-2) {};
@@ -197,13 +199,17 @@
         \mainLayerC{K5c2}{Ctrl}
         \node[key] (K5c3) at (2,-4) {};
         \mainLayerC{K5c3}{Alt}
+        \raiseLayerC{K5c3}{AltGr}
         \node[key] (K5c4) at (3,-4) {};
         \mainLayerC{K5c4}{Cmd}
         \node[key] (K5c5) at (4,-4) {};
         \mainLayerC{K5c5}{\color{TolMutedGreen} Lower}
         \node[key, minimum width = 3.75cm] (K5c6) at (5.5,-4) {};
+        \mainLayerC{K5c6}{Space}
+        \lowerLayerC{K5c6}{Bksp}
         \node[key] (K5c7) at (7,-4) {};
         \mainLayerC{K5c7}{\color{TolMutedWine} Raise}
+        \lowerLayerC{K5c7}{0}
         \node[key] (K5c8) at (8,-4) {};
         \mainLayerC{K5c8}{$\leftarrow$}
         \lowerLayer{K5c8}{.}{:}
@@ -211,6 +217,8 @@
         \mainLayerC{K5c9}{$\downarrow$}
         \node[key] (K5c10) at (10,-4) {};
         \mainLayerC{K5c10}{$\uparrow$}
+        \lowerLayerC{K5c10}{Enter}
+
         \node[key] (K5c11) at (11,-4) {};
         \mainLayerC{K5c11}{$\rightarrow$}
     \end{tikzpicture}
