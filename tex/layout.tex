@@ -43,9 +43,12 @@
     lowercenterstyle/.style={anchor=south east, font=\normalsize\bfseries},
     lowershiftstyle/.style={anchor=south east, font=\small, yshift=.35cm},
     %
-    raisenormalstyle/.style={anchor=north east, font=\normalsize\bfseries, yshift=-.05cm},
+    raisenormalstyle/.style={anchor=north east, font=\normalsize\bfseries, yshift=-.35cm},
     raisecenterstyle/.style={anchor=north east, font=\normalsize\bfseries},
-    raiseshiftstyle/.style={anchor=north east, font=\small, yshift=.35cm},
+    raiseshiftstyle/.style={anchor=north east, font=\small, yshift=.05cm},
+    %
+    hypercenterstyle/.style={anchor=south west, font=\normalsize\bfseries},
+    funcenterstyle/.style={anchor=north west, font=\normalsize\bfseries},
 }
 % 1 parent node, 2 normal, 3 shift
 \newcommand{\mainLayer}[3]{%
@@ -68,6 +71,12 @@
 }
 \newcommand{\raiseLayerC}[2]{%
     \node[raisecenterstyle, text=TolMutedPurple] (#1.Mc) at (#1.north east) {#2};
+}
+\newcommand{\hyperLayerC}[2]{%
+    \node[hypercenterstyle, text=TolMutedTeal] (#1.Mc) at (#1.south west) {#2};
+}
+\newcommand{\funLayerC}[2]{%
+    \node[funcenterstyle, text=TolMutedOlive] (#1.Mc) at (#1.north west) {#2};
 }
 \begin{document}
     \begin{tikzpicture}[scale=2]
@@ -137,7 +146,7 @@
         \node[key] (K2c12) at (11,-1) {};
         \mainLayerC{K2c12}{Bksp}
         \raiseLayerC{K2c12}{Del}
-        \lowerLayerC{K2c12}{?Entf}
+        \hyperLayerC{K2c12}{Del}
         %
         %
         % Third line
@@ -167,8 +176,10 @@
         \lowerLayerC{K3c10}{6}
         \node[key] (K3c11) at (10,-2) {};
         \mainLayer{K3c11}{ø}{Ø}
+        \raiseLayerC{K3c11}{@}
         \node[key] (K3c12) at (11,-2) {};
-        \mainLayer{K3c12}{æ}{Æ}
+        \mainLayer{K3c12}{å}{Å}
+        \raiseLayer{K3c12}{æ}{Æ}
         %
         %
         % Fourth line
@@ -203,7 +214,7 @@
         %
         % Fifth line
         \node[key] (K5c1) at (0,-4) {};
-        \mainLayerC{K5c1}{Hyper}
+        \mainLayerC{K5c1}{\color{TolVibrantTeal}Hyper}
         \node[key] (K5c2) at (1,-4) {};
         \mainLayerC{K5c2}{Ctrl}
         \node[key] (K5c3) at (2,-4) {};
