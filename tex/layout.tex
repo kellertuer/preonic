@@ -1,7 +1,7 @@
 \documentclass[a4paper, landscape, DIV=14]{scrartcl}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{tikz,amsmath}
+\usepackage{tikz,amsmath,fontawesome5}
 
 % Define bright colors.
 \definecolor{TolBrightBlue}{HTML}{4477AA}
@@ -35,20 +35,23 @@
                 minimum height = 1.75cm, inner sep = 0},
     knob/.style={circle, draw, minimum width = 1.75cm,
                 minimum height = 1.75cm, inner sep = 0},
-    normalstyle/.style={anchor=center, font=\normalsize\bfseries, yshift=-.2cm},
+    normalstyle/.style={anchor=center, font=\normalsize\bfseries, yshift=-.175cm},
     centerstyle/.style={anchor=center, font=\normalsize\bfseries},
-    shiftstyle/.style={anchor=center, font=\small, yshift=.2cm},
+    shiftstyle/.style={anchor=center, font=\small, yshift=.175cm},
     %
     lowernormalstyle/.style={anchor=south east, font=\normalsize\bfseries, yshift=-.05cm},
     lowercenterstyle/.style={anchor=south east, font=\normalsize\bfseries},
-    lowershiftstyle/.style={anchor=south east, font=\small, yshift=.35cm},
+    lowershiftstyle/.style={anchor=south east, font=\small, yshift=.25cm},
     %
-    raisenormalstyle/.style={anchor=north east, font=\normalsize\bfseries, yshift=-.35cm},
+    raisenormalstyle/.style={anchor=north east, font=\normalsize\bfseries, yshift=-.25cm},
     raisecenterstyle/.style={anchor=north east, font=\normalsize\bfseries},
     raiseshiftstyle/.style={anchor=north east, font=\small, yshift=.05cm},
     %
-    hypercenterstyle/.style={anchor=south west, font=\normalsize\bfseries},
-    funcenterstyle/.style={anchor=north west, font=\normalsize\bfseries},
+    hypercenterstyle/.style={anchor=south, font=\normalsize},
+    funcenterstyle/.style={anchor=north west, font=\normalsize},
+    altcenterstyle/.style={anchor=south west, font=\normalsize\bfseries},
+    altnormalstyle/.style={anchor=south west, font=\normalsize\bfseries, yshift=-.05cm},
+    altshiftstyle/.style={anchor=south west, font=\small, yshift=.25cm},
 }
 % 1 parent node, 2 normal, 3 shift
 \newcommand{\mainLayer}[3]{%
@@ -73,10 +76,17 @@
     \node[raisecenterstyle, text=TolMutedPurple] (#1.Mc) at (#1.north east) {#2};
 }
 \newcommand{\hyperLayerC}[2]{%
-    \node[hypercenterstyle, text=TolMutedTeal] (#1.Mc) at (#1.south west) {#2};
+    \node[hypercenterstyle, text=TolMutedTeal] (#1.Mc) at (#1.south) {#2};
 }
 \newcommand{\funLayerC}[2]{%
-    \node[funcenterstyle, text=TolMutedOlive] (#1.Mc) at (#1.north west) {#2};
+    \node[funcenterstyle, text=TolVibrantOrange] (#1.Mc) at (#1.north west) {#2};
+}
+\newcommand{\altLayerC}[2]{%
+    \node[altcenterstyle, text=TolMutedOlive] (#1.Mc) at (#1.south west) {#2};
+}
+\newcommand{\altLayer}[3]{%
+    \node[altnormalstyle, text=TolMutedOlive] (#1.Mn) at (#1.south west) {#2};
+    \node[altshiftstyle,  text=TolMutedOlive] (#1.Ms) at (#1.south west) {#3};
 }
 \begin{document}
     \begin{tikzpicture}[scale=2]
@@ -86,19 +96,27 @@
         \mainLayerC{K0c2}{\color{TolVibrantOrange}Fun}
         \node[knob] (K0c3) at (11,1.5) {};
         \mainLayerC{K0c3}{knob}
-        %
+        \node[anchor=north, font=\footnotesize] at (K0c3.north) {\faPlay\faPause};
+        \node[anchor=south west, font=\footnotesize] at (K0c3.north east) {\faVolumeUp};
+        \node[anchor=south east, font=\footnotesize] at (K0c3.north west) {\faVolumeDown};
         \node[key] (K1c1) at (0,0) {};
         \mainLayer{K1c1}{<}{>}
+        \funLayerC{K1c1}{\faBluetoothB\,off}
         \node[key] (K1c2) at (1,0) {};
         \mainLayer{K1c2}{1}{!}
+        \funLayerC{K1c2}{\faBluetoothB\,1}
         \node[key] (K1c3) at (2,0) {};
         \mainLayer{K1c3}{2}{"}
+        \funLayerC{K1c3}{\faBluetoothB\,2}
         \node[key] (K1c4) at (3,0) {};
         \mainLayer{K1c4}{3}{\#}
+        \funLayerC{K1c4}{\faBluetoothB\,3}
         \node[key] (K1c5) at (4,0) {};
         \mainLayer{K1c5}{4}{\#}
+        \funLayerC{K1c5}{\faBluetoothB\,4}
         \node[key] (K1c6) at (5,0) {};
         \mainLayer{K1c6}{5}{\%}
+        \funLayerC{K1c6}{\faBluetoothB\,pair}
         \node[key] (K1c7) at (6,0) {};
         \mainLayer{K1c7}{6}{\&}
         \node[key] (K1c8) at (7,0) {};
@@ -111,6 +129,7 @@
         \mainLayer{K1c11}{0}{=}
         \node[key] (K1c12) at (11,0) {};
         \mainLayer{K1c12}{+}{?}
+        \funLayerC{K1c12}{ver}
         %
         %
         % Second line
@@ -120,29 +139,33 @@
         \mainLayer{K2c2}{q}{Q}
         \node[key] (K2c3) at (2,-1) {};
         \mainLayer{K2c3}{w}{W}
+        \funLayerC{K2c3}{\faVolumeUp}
+        \raiseLayerC{K2c3}{{\scriptsize\faMousePointer}$\uparrow$}
+        \lowerLayerC{K2c3}{$\uparrow$}
         \node[key] (K2c4) at (3,-1) {};
         \mainLayer{K2c4}{e}{E}
         \node[key] (K2c5) at (4,-1) {};
         \mainLayer{K2c5}{r}{R}
+        \raiseLayerC{K2c5}{{\tiny warp}$\nwarrow$}
         \node[key] (K2c6) at (5,-1) {};
         \mainLayer{K2c6}{t}{T}
+        \raiseLayerC{K2c6}{{\tiny warp}$\nearrow$}
         \node[key] (K2c7) at (6,-1) {};
         \mainLayer{K2c7}{y}{Y}
-        \raiseLayerC{K2c7}{@}
         \node[key] (K2c8) at (7,-1) {};
         \mainLayer{K2c8}{u}{U}
         \lowerLayerC{K2c8}{7}
-        \raiseLayerC{K2c8}{Å}
+        \altLayer{K2c8}{ü}{Ü}
         \node[key] (K2c9) at (8,-1) {};
         \mainLayer{K2c9}{i}{I}
         \lowerLayerC{K2c9}{8}
-        \raiseLayerC{K2c9}{$\hat{}$}
         \node[key] (K2c10) at (9,-1) {};
         \mainLayer{K2c10}{o}{O}
         \lowerLayerC{K2c10}{9}
-        \raiseLayerC{K2c10}{å}
+        \raiseLayer{K2c10}{´}{`}
         \node[key] (K2c11) at (10,-1) {};
         \mainLayer{K2c11}{p}{P}
+        \raiseLayer{K2c11}{¨}{$\hat{}$}
         \node[key] (K2c12) at (11,-1) {};
         \mainLayerC{K2c12}{Bksp}
         \raiseLayerC{K2c12}{Del}
@@ -155,14 +178,26 @@
         \raiseLayerC{K3c1}{Caps}
         \node[key] (K3c2) at (1,-2) {};
         \mainLayer{K3c2}{a}{A}
+        \funLayerC{K3c2}{\faCaretLeft\,\faItunesNote}
+        \raiseLayerC{K3c2}{{\scriptsize\faMousePointer}$\leftarrow$}
+        \lowerLayerC{K3c2}{$\leftarrow$}
         \node[key] (K3c3) at (2,-2) {};
         \mainLayer{K3c3}{s}{S}
+        \raiseLayerC{K3c3}{{\scriptsize\faMousePointer}$\downarrow$}
+        \lowerLayerC{K3c3}{$\downarrow$}
+        \funLayerC{K3c3}{\faVolumeDown}
+        \altLayerC{K3c3}{ß}
         \node[key] (K3c4) at (3,-2) {};
         \mainLayer{K3c4}{d}{D}
+        \raiseLayerC{K3c4}{{\scriptsize\faMousePointer}$\rightarrow$}
+        \lowerLayerC{K3c4}{$\rightarrow$}
+        \funLayerC{K3c4}{\faItunesNote\,\faCaretRight}
         \node[key] (K3c5) at (4,-2) {};
         \mainLayer{K3c5}{f}{F}
+        \raiseLayerC{K3c5}{{\tiny warp}$\swarrow$}
         \node[key] (K3c6) at (5,-2) {};
         \mainLayer{K3c6}{g}{G}
+        \raiseLayerC{K3c6}{{\tiny warp}$\searrow$}
         \node[key] (K3c7) at (6,-2) {};
         \mainLayer{K3c7}{h}{H}
         \node[key] (K3c8) at (7,-2) {};
@@ -170,6 +205,7 @@
         \lowerLayerC{K3c8}{4}
         \node[key] (K3c9) at (8,-2) {};
         \mainLayer{K3c9}{k}{K}
+        \raiseLayerC{K3c9}{$\uparrow$}
         \lowerLayerC{K3c9}{5}
         \node[key] (K3c10) at (9,-2) {};
         \mainLayer{K3c10}{l}{L}
@@ -177,9 +213,11 @@
         \node[key] (K3c11) at (10,-2) {};
         \mainLayer{K3c11}{ø}{Ø}
         \raiseLayerC{K3c11}{@}
+        \altLayer{K3c11}{ö}{ö}
         \node[key] (K3c12) at (11,-2) {};
-        \mainLayer{K3c12}{å}{Å}
-        \raiseLayer{K3c12}{æ}{Æ}
+        \mainLayer{K3c12}{æ}{Æ}
+        \raiseLayer{K3c12}{å}{Å}
+        \altLayer{K3c12}{ä}{Ä}
         %
         %
         % Fourth line
@@ -187,27 +225,35 @@
         \mainLayerC{K4c1}{Shift}
         \node[key] (K4c2) at (1,-3) {};
         \mainLayer{K4c2}{z}{Z}
+        \raiseLayerC{K4c2}{{\scriptsize\faMouse L}}
         \node[key] (K4c3) at (2,-3) {};
         \mainLayer{K4c3}{x}{X}
+        \funLayerC{K4c3}{\faVolumeMute}
+        \raiseLayerC{K4c3}{{\scriptsize\faMouse C}}
         \node[key] (K4c4) at (3,-3) {};
         \mainLayer{K4c4}{c}{C}
+        \raiseLayerC{K4c4}{{\scriptsize\faMouse R}}
         \node[key] (K4c5) at (4,-3) {};
         \mainLayer{K4c5}{v}{V}
         \node[key] (K4c6) at (5,-3) {};
         \mainLayer{K4c6}{b}{B}
+        \raiseLayerC{K4c6}{{\tiny warp end}}
         \node[key] (K4c7) at (6,-3) {};
         \mainLayer{K4c7}{n}{N}
         \node[key] (K4c8) at (7,-3) {};
         \mainLayer{K4c8}{m}{M}
+        \raiseLayerC{K4c8}{$\leftarrow$}
         \lowerLayerC{K4c8}{1}
         \node[key] (K4c9) at (8,-3) {};
         \mainLayer{K4c9}{,}{;}
+        \raiseLayerC{K4c9}{$\downarrow$}
         \lowerLayerC{K4c9}{2}
         \node[key] (K4c10) at (9,-3) {};
         \mainLayer{K4c10}{.}{:}
+        \raiseLayerC{K4c10}{$\rightarrow$}
         \lowerLayerC{K4c10}{3}
         \node[key] (K4c11) at (10,-3) {};
-        \mainLayer{K4c11}{-}{\_}
+        \mainLayerC{K4c11}{$\uparrow$}
         \node[key] (K4c12) at (11,-3) {};
         \mainLayerC{K4c12}{Enter}
         %
@@ -215,10 +261,11 @@
         % Fifth line
         \node[key] (K5c1) at (0,-4) {};
         \mainLayerC{K5c1}{\color{TolVibrantTeal}Hyper}
+        \funLayerC{K5c1}{stats}
         \node[key] (K5c2) at (1,-4) {};
         \mainLayerC{K5c2}{Ctrl}
         \node[key] (K5c3) at (2,-4) {};
-        \mainLayerC{K5c3}{Alt}
+        \mainLayerC{K5c3}{\color{TolMutedOlive}Alt}
         \raiseLayerC{K5c3}{AltGr}
         \node[key] (K5c4) at (3,-4) {};
         \mainLayerC{K5c4}{Cmd}
@@ -231,14 +278,14 @@
         \mainLayerC{K5c7}{\color{TolMutedWine} Raise}
         \lowerLayerC{K5c7}{0}
         \node[key] (K5c8) at (8,-4) {};
-        \mainLayerC{K5c8}{$\leftarrow$}
+        \mainLayer{K5c8}{-}{\_}
+
         \lowerLayer{K5c8}{.}{:}
         \node[key] (K5c9) at (9,-4) {};
-        \mainLayerC{K5c9}{$\downarrow$}
+        \mainLayerC{K5c9}{$\leftarrow$}
         \node[key] (K5c10) at (10,-4) {};
-        \mainLayerC{K5c10}{$\uparrow$}
+        \mainLayerC{K5c10}{$\downarrow$}
         \lowerLayerC{K5c10}{Enter}
-
         \node[key] (K5c11) at (11,-4) {};
         \mainLayerC{K5c11}{$\rightarrow$}
     \end{tikzpicture}
