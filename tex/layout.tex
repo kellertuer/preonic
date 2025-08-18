@@ -100,7 +100,7 @@
         \node[anchor=south west, font=\footnotesize] at (K0c3.north east) {\faVolumeUp};
         \node[anchor=south east, font=\footnotesize] at (K0c3.north west) {\faVolumeDown};
         \node[key] (K1c1) at (0,0) {};
-        \mainLayer{K1c1}{<}{>}
+        \mainLayer{K1c1}{'}{§}
         \funLayerC{K1c1}{\faBluetoothB\,off}
         \node[key] (K1c2) at (1,0) {};
         \mainLayer{K1c2}{1}{!}
@@ -158,6 +158,7 @@
         \altLayer{K2c8}{ü}{Ü}
         \node[key] (K2c9) at (8,-1) {};
         \mainLayer{K2c9}{i}{I}
+        \raiseLayerC{K2c9}{$\uparrow$}
         \lowerLayerC{K2c9}{8}
         \node[key] (K2c10) at (9,-1) {};
         \mainLayer{K2c10}{o}{O}
@@ -203,13 +204,15 @@
         \node[key] (K3c8) at (7,-2) {};
         \mainLayer{K3c8}{j}{J}
         \lowerLayerC{K3c8}{4}
+        \raiseLayerC{K3c8}{$\leftarrow$}
         \node[key] (K3c9) at (8,-2) {};
         \mainLayer{K3c9}{k}{K}
-        \raiseLayerC{K3c9}{$\uparrow$}
         \lowerLayerC{K3c9}{5}
+        \raiseLayerC{K3c9}{$\downarrow$}
         \node[key] (K3c10) at (9,-2) {};
         \mainLayer{K3c10}{l}{L}
         \lowerLayerC{K3c10}{6}
+        \raiseLayerC{K3c10}{$\rightarrow$}
         \node[key] (K3c11) at (10,-2) {};
         \mainLayer{K3c11}{ø}{Ø}
         \raiseLayerC{K3c11}{@}
@@ -242,15 +245,15 @@
         \mainLayer{K4c7}{n}{N}
         \node[key] (K4c8) at (7,-3) {};
         \mainLayer{K4c8}{m}{M}
-        \raiseLayerC{K4c8}{$\leftarrow$}
         \lowerLayerC{K4c8}{1}
         \node[key] (K4c9) at (8,-3) {};
         \mainLayer{K4c9}{,}{;}
-        \raiseLayerC{K4c9}{$\downarrow$}
+        \raiseLayer{K4c9}{<}{>}
         \lowerLayerC{K4c9}{2}
         \node[key] (K4c10) at (9,-3) {};
         \mainLayer{K4c10}{.}{:}
-        \raiseLayerC{K4c10}{$\rightarrow$}
+        \raiseLayer{K4c10}{´}{`}
+
         \lowerLayerC{K4c10}{3}
         \node[key] (K4c11) at (10,-3) {};
         \mainLayerC{K4c11}{$\uparrow$}
