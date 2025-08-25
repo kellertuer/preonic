@@ -1,7 +1,8 @@
 \documentclass[a4paper, landscape, DIV=14]{scrartcl}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{tikz,amsmath,fontawesome5}
+\usepackage{tikz,amsmath}
+\usepackage[pro]{fontawesome5}
 
 % Define bright colors.
 \definecolor{TolBrightBlue}{HTML}{4477AA}
@@ -105,31 +106,46 @@
         \node[key] (K1c2) at (1,0) {};
         \mainLayer{K1c2}{1}{!}
         \funLayerC{K1c2}{\faBluetoothB\,1}
+        \raiseLayerC{K1c2}{F1}
         \node[key] (K1c3) at (2,0) {};
         \mainLayer{K1c3}{2}{"}
         \funLayerC{K1c3}{\faBluetoothB\,2}
+        \raiseLayerC{K1c3}{F2}
         \node[key] (K1c4) at (3,0) {};
         \mainLayer{K1c4}{3}{\#}
         \funLayerC{K1c4}{\faBluetoothB\,3}
+        \raiseLayerC{K1c4}{F3}
         \node[key] (K1c5) at (4,0) {};
         \mainLayer{K1c5}{4}{\#}
         \funLayerC{K1c5}{\faBluetoothB\,4}
+        \raiseLayerC{K1c5}{F4}
         \node[key] (K1c6) at (5,0) {};
         \mainLayer{K1c6}{5}{\%}
         \funLayerC{K1c6}{\faBluetoothB\,pair}
+        \raiseLayerC{K1c6}{F5}
         \node[key] (K1c7) at (6,0) {};
         \mainLayer{K1c7}{6}{\&}
+        \funLayerC{K1c7}{\faIcon[regular]{sun}\,-}
+        \raiseLayerC{K1c7}{F6}
         \node[key] (K1c8) at (7,0) {};
         \mainLayer{K1c8}{7}{/}
+        \funLayerC{K1c8}{\faIcon[regular]{sun}\,+}
+        \raiseLayerC{K1c8}{F7}
         \node[key] (K1c9) at (8,0) {};
         \mainLayer{K1c9}{8}{(}
+        \funLayerC{K1c9}{\scriptsize Mission}
+        \raiseLayerC{K1c9}{F8}
         \node[key] (K1c10) at (9,0) {};
         \mainLayer{K1c10}{9}{)}
+        \funLayerC{K1c10}{\scriptsize Exposé}
+        \raiseLayerC{K1c10}{F9}
         \node[key] (K1c11) at (10,0) {};
         \mainLayer{K1c11}{0}{=}
+        \raiseLayerC{K1c11}{F10}
         \node[key] (K1c12) at (11,0) {};
         \mainLayer{K1c12}{+}{?}
-        \funLayerC{K1c12}{ver}
+        \funLayerC{K1c12}{Lock}
+
         %
         %
         % Second line
@@ -267,6 +283,7 @@
         \funLayerC{K5c1}{stats}
         \node[key] (K5c2) at (1,-4) {};
         \mainLayerC{K5c2}{Ctrl}
+        \hyperLayerC{K5c2}{\faIcon[regular]{globe}}
         \node[key] (K5c3) at (2,-4) {};
         \mainLayerC{K5c3}{\color{TolMutedOlive}Alt}
         \raiseLayerC{K5c3}{AltGr}
